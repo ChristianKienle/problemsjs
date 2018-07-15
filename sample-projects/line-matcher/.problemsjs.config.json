@@ -1,0 +1,14 @@
+{
+  "openInEditorCommand": "code --goto ${absolutePath}:${line}",
+  "watcherOptions": {
+    "watchedFolder" : "${workspaceFolder}",
+    "include": ["**/*.ts"]
+  },
+  "tasks": [
+    {
+      "name": "problem",
+      "matcher": "line",
+      "command": "node ${workspaceFolder}/generate-lines.js"
+    }
+  ]
+}

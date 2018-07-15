@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "required": [
+    "problems"
+  ],
+  "properties": {
+    "problems": {
+      "$id": "/properties/problems",
+      "type": "array",
+      "items": {
+        "$id": "/properties/problems/items",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "$id": "/properties/problems/items/properties/category",
+            "type": "string",
+            "title": "The Category Schema ",
+            "default": "",
+            "examples": [
+              "hello"
+            ]
+          },
+          "message": {
+            "$id": "/properties/problems/items/properties/message",
+            "type": "string",
+            "title": "The Message Schema ",
+            "examples": [
+              "an string describing the problem"
+            ]
+          },
+          "location": {
+            "$id": "/properties/problems/items/properties/location",
+            "type": "object",
+            "properties": {
+              "source": {
+                "$id": "/properties/problems/items/properties/location/properties/source",
+                "type": "string",
+                "title": "The Source Schema ",
+                "default": "",
+                "examples": [
+                  "hhhh"
+                ]
+              },
+              "line": {
+                "$id": "/properties/problems/items/properties/location/properties/line",
+                "type": "integer",
+                "title": "The Line Schema ",
+                "default": 0,
+                "examples": [
+                  123
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

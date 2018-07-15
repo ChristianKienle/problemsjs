@@ -1,0 +1,71 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "name": "vscode-jest-tests",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+      "args": [
+        "--runInBand"
+      ],
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "console": "externalTerminal",
+      "name": "Launch problemsjs view",
+      "program": "${workspaceFolder}/cli.js",
+      "args": [
+        "view",
+        "--log",
+        "${workspaceFolder}/.problemsjs.log",
+        "--config",
+        "${workspaceFolder}/.problemsjs.config.json",
+        "--nolazy",
+        "--inspect-brk"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "console": "externalTerminal",
+      "name": "Sample: Lines Matcher",
+      "program": "${workspaceFolder}/cli.js",
+      "args": [
+        "view",
+        "--log",
+        "${workspaceFolder}/.problemsjs.log",
+        "--config",
+        "${workspaceFolder}/sample-projects/line-matcher/.problemsjs.config.json",
+        "--nolazy",
+        "--inspect-brk"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "console": "externalTerminal",
+      "name": "Sample: Mock",
+      "program": "${workspaceFolder}/cli.js",
+      "args": [
+        "view",
+        "--log",
+        "${workspaceFolder}/.problemsjs.log",
+        "--config",
+        "${workspaceFolder}/sample-projects/mock/.problemsjs.config.json",
+        "--nolazy",
+        "--inspect-brk"
+      ]
+    }
+  ]
+}

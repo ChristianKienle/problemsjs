@@ -1,0 +1,55 @@
+{
+  "openInEditorCommand": "code --goto ${absolutePath}:${line}",
+  "watcherOptions": {
+    "watchedFolder" : "${workspaceFolder}"
+  },
+  "tasks": [
+    {
+      "name": "test",
+      "matcher": "jest",
+      "program": "jest",
+      "args": [
+        "--rootDir",
+      "${workspaceFolder}",
+      "--config",
+      "${workspaceFolder}/jest.config.js",
+      "--json",
+      "--silent",
+      "--reporters",
+      "--all"
+    ]},
+    {
+      "name": "lint",
+      "matcher": "eslint",
+      "program": "eslint",
+      "args": [
+        "${workspaceFolder}",
+        "--config",
+        "${workspaceFolder}/.eslintrc.js",
+        "--ext",
+        ".js,.json",
+        "--format=json"
+      ]
+    },
+    {
+      "name": "flow",
+      "matcher": "flow",
+      "program": "flow",
+      "args": [
+        "check",
+        "--json",
+        "--pretty",
+        "${workspaceFolder}"
+      ]
+    },
+    {
+			"name": "sample task",
+			"matcher": "line",
+			"program": "echo",
+			"args": [
+				"Problems.js seems to work! 😎\nOpen .problemsjs.config.json and add useful tasks-\nYou find the docs at:\nhttps://github.com/ChristianKienle/problemsjs"
+			],
+			"cwd": "${workspaceFolder}"
+		}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "./native-matcher.schema.json",
+  "problems": [
+    {
+      "message": "hello",
+      "location": { "source": "myFile.js", "line": 123 }
+    },
+    {
+      "message": "hello",
+      "location": { "source": "myFile.js", "line": 123 }
+    },
+    {
+      "message": "hello",
+      "location": { "source": "myFile.js", "line": 123 }
+    },{
+      "message": "hello",
+      "location": { "source": "myFile.js", "line": 123 }
+    },
+    {
+      "message": "hello",
+      "location": { "source": "myFile.js", "line": 123 }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "openInEditorCommand": "code --goto ${absolutePath}:${line}",
+  "watcherOptions": {
+    "watchedFolder" : "${workspaceFolder}",
+    "include": ["**/*.ts"]
+  },
+  "tasks": [
+    {
+      "name": "tslint",
+      "type": "command",
+      "matcher": "tslint",
+      "options": {
+        "command": "tslint --config ${workspaceFolder}/tslint.json --project ${workspaceFolder} -t json"
+      }
+    }
+  ]
+}

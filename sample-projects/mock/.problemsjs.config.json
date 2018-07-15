@@ -1,0 +1,18 @@
+{
+  "openInEditorCommand": "code --goto ${absolutePath}:${line}",
+  "watcherOptions": {
+    "watchedFolder" : "${workspaceFolder}"
+  },
+  "tasks": [
+    {
+      "name": "problem",
+      "matcher": "native",
+      "command": "sleep 1 && cat ${workspaceFolder}/fixtures/single-problem.json"
+    },
+    {
+      "name": "problem2",
+      "matcher": "native",
+      "command": "sleep 1 && cat ${workspaceFolder}/fixtures/multiple-problems.json"
+    }
+  ]
+}

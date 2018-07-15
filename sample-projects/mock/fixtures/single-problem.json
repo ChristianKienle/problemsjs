@@ -1,0 +1,12 @@
+{
+  "$schema": "./native-matcher.schema.json",
+  "problems": [
+    {
+      "message": "hello",
+      "location": {
+        "source": "hhhh",
+        "line": 123
+      }
+    }
+  ]
+}

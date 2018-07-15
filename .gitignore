@@ -1,0 +1,5 @@
+node_modules
+.problemsjs.log
+.DS_Store
+.tests.log
+problemsjs-*.tgz

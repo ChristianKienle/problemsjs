@@ -1,0 +1,10 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/sample-projects/mock/fixtures/single-problem.json"
+      ],
+      "url": "./native-matcher.schema.json"
+    }
+  ]
+}
