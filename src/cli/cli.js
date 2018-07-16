@@ -3,71 +3,62 @@
 
 const TermKit = require( 'terminal-kit' );
 const { openInEditor } = require('./editor');
-const TerminalUI = require('./terminal-ui/ui-impl-termkit');
-const SystemTerminalUI = require('./terminal-ui/ui/terminal-ui-impl');
+const { MainView } = require('./ui');
+const SystemTerminalUI = require('./ui/system-terminal');
 const log = require('cmklog');
 
 /*::
-type RenderInfoItem = Problem | string;
-type RenderInfo = Map<number, RenderInfoItem>; //{ [lineNumber: number]: RenderInfoItem };
 type CLIOptions = {
-  workspaceFolder?: string;
   openInEditorCommand?: string;
 };
 */
 
-class CLI /*:: implements ProblemsDelegate */ {
+class CLI /*:: implements EmitterDelegate */ {
   /*::
-  _terminal: TerminalUIInterface;
-  _background: any;
-  _problemBuffers: any[];
-  _ui: TerminalUI;
+  _mainView: MainView;
   _openInEditorCommand: ?string;
   */
-  constructor({ workspaceFolder = process.cwd(), openInEditorCommand } /*: CLIOptions */ = { }) {
-    this._problemBuffers = [];
+  constructor({ openInEditorCommand } /*: CLIOptions */ = { }) {
     this._openInEditorCommand = openInEditorCommand;
-    const term = TermKit.terminal;
-    this._terminal = new SystemTerminalUI(term);
-    this._ui = new TerminalUI({ui: this._terminal, workspaceFolder });
-    this._ui.setProblemSelectionHandler((problem) => {
-      this.didSelectItem(problem);
-    });
+    this._mainView = new MainView({ ui: new SystemTerminalUI(TermKit.terminal) });
+    this._mainView.setProblemSelectionHandler(problem => { this._didSelectProblem(problem); });
+    this._mainView.setSourceSelectionHandler(source => { this._didSelectSourceFile(source); });
   }
 
-  didSelectItem(item /*: RenderInfoItem */) /*: void */ {
+  _openFile(absolutePath /*: string */, line /*: number */ = 1) {
     const template = this._openInEditorCommand;
     if(template == null || template === undefined) {
       log.info('Cannot open item because no openInEditorCommand has been specified.');
       return;
     }
-    if(typeof item === 'string') {
-      openInEditor({template, location: item});
-      return;
-    }
-    const problem = item;
-    const absolutePath = problem.location.source;
-    const line = problem.location.line;
     openInEditor({template, location: {absolutePath, line}});
   }
 
+  _didSelectSourceFile(file /*: string */) /*: void */ {
+    this._openFile(file);
+  }
+
+  _didSelectProblem(problem /*: Problem */) /*: void */ {
+    const { source, line } = problem.location;
+    this._openFile(source, line);
+  }
+
   // ProblemsDelegate
-  didEndRun(results /*: MatcherResult[] */) {
-    this._ui.didEndRun(results);
+  didEndRun(run /*: RunInterface */) {
+    this._mainView.didEndRun(run);
   }
 
   willBeginRun() {
-    this._ui.willBeginRun();
+    this._mainView.willBeginRun();
   }
 
   willExecuteTask(task /*: TaskConfig */) {
-    this._ui.willExecuteTask(task);
+    this._mainView.willExecuteTask(task);
   }
 
   didExecuteTask() {
-    this._ui.didExecuteTask();
+    this._mainView.didExecuteTask();
   }
-
 }
 
 module.exports = CLI;

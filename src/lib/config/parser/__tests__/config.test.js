@@ -4,7 +4,7 @@
 // make eslint eat jests global test stuff
 /* global test, expect */
 
-const { fromString } = require('./..');
+const { fromString, resolved } = require('./..');
 
 test('empty string throws', () => {
   expect(() => {
@@ -110,7 +110,7 @@ test('simplest config with task', () => {
   expect(unresolvedTask.args).toEqual([]);
 
   // Resolve the config and test again
-  const config = unresolved.resolved();
+  const config = resolved(unresolved);
   expect(config.tasks).toBeArrayOfSize(1);
   const task = config.tasks[0];
   expect(task.program).toEqual('ls');

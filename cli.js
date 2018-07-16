@@ -12,7 +12,11 @@
 'use strict';
 
 const log = require('cmklog');
-const { fromFile: configurationFromFile, defaultConfiguration } = require('./src/api/config');
+const {
+  fromFile: configurationFromFile,
+  defaultConfiguration,
+  resolved: resolvedConfiguration,
+} = require('./src/lib/config');
 const Path = require('path');
 const fs = require('fs');
 const { App, CLI } = require('./src');
@@ -39,11 +43,12 @@ const view = ({ configPath } /*: ViewOptions */) => {
 
   // Load the config
   const config = configurationFromFile(configPath);
-  const resolved = config.resolved();
+  const resolved = resolvedConfiguration(config);
   const app = new App(config);
-  const cli = new CLI({...resolved});
+  const { openInEditorCommand } = resolved;
+  const cli = new CLI({ openInEditorCommand });
   app.delegate = cli;
-  app.start(() => {});
+  app.start();
 };
 
 const init = () => {

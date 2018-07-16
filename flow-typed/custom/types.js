@@ -30,15 +30,11 @@ declare type ConfigType = {
   // }
   watcherOptions: WatcherOptions;
   openInEditorCommand?: string;
-};
+}; //
 
-declare type Resolveable = {
-  resolved(): ResolvedConfig;
-};
-declare type Resolved = { +resolved: true; };
-declare type ResolvedConfig = ConfigType & Resolved;
+declare type ResolvedConfig = ConfigType;
 declare type Config = ResolvedConfig;
-declare type UnresolvedConfig = ConfigType & Resolveable;
+declare type UnresolvedConfig = ConfigType;
 
 declare interface MatcherRegistryInterface {
   addMatcher(name: string, matcher: Matcher): void;
@@ -47,19 +43,26 @@ declare interface MatcherRegistryInterface {
   +names: string[];
 };
 
+
+declare interface RunInterface {
+  +results: MatcherResult[];
+  +workspaceFolder: string;
+  +problems: Problem[]; // convenience
+};
+
 // Throw if you cannot create a task based on config.
-declare interface ProblemsDelegate {
+declare interface EmitterDelegate {
   willBeginRun(): void;
-  didEndRun(results: MatcherResult[]): void;
+  didEndRun(run: RunInterface): void;
   willExecuteTask(task: TaskConfig): void;
   didExecuteTask(): void;
 };
 
-declare interface AppInterface {
+declare interface EmitterInterface {
   tasks: TaskConfig[];
   workspaceFolder: string;
-  delegate: ?ProblemsDelegate;
-  resume(cb: (results: MatcherResult[]) => void): Promise<void>;
+  delegate: EmitterDelegate;
+  resume(cb: (results: MatcherResult[]) => void): void;
 };
 
 // Misc

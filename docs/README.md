@@ -263,31 +263,35 @@ The following example shows most of what is already possible:
 
 const { App, CLI } = require('problemsjs');
 
-const watcherOptions = {
-  watchedFolder: process.cwd()
-};
-
-const config = { watcherOptions, tasks: [] };
-
+const { CLI, App } = require('problemsjs');
+const app = new App();
 const cli = new CLI();
-const app = new App({ config });
 
-app.delegate = cli;
+app.config.tasks = [{
+  program: 'echo',
+  args: ['hello world'],
+  matcher: 'my_matcher'
+}];
 
-// Register a custom Matcher here:
-app.useMatcher('no_problems', (input) => {
-  return { problems: [] };
+app.useMatcher('my_matcher', (input) => {
+  return {
+    problems: [{
+      category: 'my_matcher',
+      message: `Message from Matcher: ${input}`,
+      location: { source: '', line: 1 },
+    }]
+  };
 });
 
-app.start(() => {});
+app.delegate = cli;
+app.start();
 ```
 
-- This example first imports `App` and `CLI` - the two main building blocks.
-- Then a configuration is created which will execute no tasks (`tasks: []`) and simply watch the current directory.
-- After that, `app` and `cli` are created and hooked up (`app.delegage = cli;`).
+- This example first imports `App` and `CLI` - the two main building blocks and creates an instance of both.
+- Then we tell *Problem.js* to execute `echo hello world` on each run.
+- After that, we reguster a custom matcher (`my_matcher`). The custom matcher simply takes the input and uses it to create a single problem.
+- After that, `app` and `cli` are hooked up (`app.delegage = cli;`).
 - `app` emits several events which are simply piped directly to the `cli`-instance.
-- The second to last step is the creation and registration of a new matcher.
-- The matcher is simply always returning an empty `problems`-array. This means that this matcher will never produce any meaningful problems. However, it shows the basics.
-- Then everything is started.
+- Then `start()` 🚀 the glory.
 
-If you execute the code above `node yourfile.js`, you will see an empty problems view.
+If you execute the code above `node yourfile.js`, you will see a problems view with a single task. If you change `yourfile.js` (or any other `*.js`-file) the task is run again, your matcher is called and the result is displayed.

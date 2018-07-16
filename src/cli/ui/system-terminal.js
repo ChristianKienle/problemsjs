@@ -1,9 +1,9 @@
 // @flow
 'use strict';
 
-const { Rect } = require('./../geometry');
+const { Rect } = require('./geometry');
 
-class SystemTerminalUI /*:: implements TerminalUIInterface */ {
+class SystemTerminal /*:: implements TerminalUIInterface */ {
   /*::
   _t: any;
   */
@@ -151,4 +151,4 @@ class SystemTerminalUI /*:: implements TerminalUIInterface */ {
   }
 }
 
-module.exports = SystemTerminalUI;
+module.exports = SystemTerminal;

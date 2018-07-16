@@ -13,7 +13,7 @@ const _taskNameFromTask = ({name, program} /*: TaskConfig */) /*: string */ => {
   return Path.basename(program);
 };
 
-class StatusBar /*:: implements ProblemsDelegate */ {
+class StatusBar /*:: implements EmitterDelegate */ {
   /*::
   lastRun: ?Date;
   _results: MatcherResult[];
@@ -70,7 +70,7 @@ class StatusBar /*:: implements ProblemsDelegate */ {
     this._renderAccessory();
   }
 
-  didEndRun(results /*: MatcherResult[] */) /*: void */ {
+  didEndRun({ results } /*: RunInterface */) /*: void */ {
     this._results = results;
     this._isRunning = false;
     this.lastRun = new Date(Date.now());

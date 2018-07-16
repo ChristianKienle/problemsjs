@@ -1,12 +1,8 @@
 // @flow
 'use strict';
 
-
 class Point {
-  /*::
-    x: number;
-    y: number;
-  */
+  /*:: x: number; y: number; */
   constructor({x, y} /*: UI$Point */ ) {
     this.x = x;
     this.y = y;
@@ -21,11 +17,7 @@ class Size {
   }
 }
 
-/*::
-type FlatRect = { x: number; y: number; width: number; height: number; };
-    origin: UI$Point;
-    size: UI$Size;
-  */
+/*:: type FlatRect = { x: number; y: number; width: number; height: number; }; */
 class Rect {
   /*::
     origin: UI$Point;
@@ -35,7 +27,6 @@ class Rect {
     this.origin = new Point({...origin});
     this.size = new Size({...size});
   }
-
 
   static from(flatRect /*: FlatRect */) /*: Rect */ {
     const origin = new Point(flatRect);

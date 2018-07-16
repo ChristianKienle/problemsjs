@@ -1,20 +1,28 @@
 // @flow
 'use strict';
+const Path = require('path');
 
+/*:: type EntryOptions = {
+  absolutePath: string;
+  relativePath: string;
+  problems: Problem[];
+}; */
 class OutlineModelEntry {
   /*::
   absolutePath: string;
   problems: Problem[];
+  relativePath: string;
   */
-  constructor(absolutePath /*: string */, problems /*: Problem[] */) {
+  constructor({ absolutePath, relativePath, problems } /*: EntryOptions */) {
     this.absolutePath = absolutePath;
+    this.relativePath = relativePath;
     this.problems = problems;
   }
 }
 
 class OutlineModel {
-  /*:: entries: OutlineModelEntry[]; */
-  constructor(problems /*: Problem[] */) {
+  static fromRun({problems, workspaceFolder} /*: RunInterface */) {
+    const entries /*: OutlineModelEntry[] */ = [];
     const problemsByFile = new Map/*::<string, Problem[]>*/();
     problems.forEach(problem => {
       const file = problem.location.source;
@@ -22,11 +30,17 @@ class OutlineModel {
       problemsForFile.push(problem);
       problemsByFile.set(file, problemsForFile);
     });
-    this.entries = [];
-    problemsByFile.forEach((problemForFile, file) => {
-      const entry = new OutlineModelEntry(file, problemForFile);
-      this.entries.push(entry);
+    problemsByFile.forEach((problemsForFile, absolutePath) => {
+      const relativePath = Path.relative(workspaceFolder, absolutePath);
+      const entry = new OutlineModelEntry({ absolutePath, relativePath, problems: problemsForFile });
+      entries.push(entry);
     });
+    return new OutlineModel(entries);
+  }
+
+  /*:: entries: OutlineModelEntry[]; */
+  constructor(entries /*: OutlineModelEntry[] */) {
+    this.entries = entries;
   }
 
   get _problems() /*: Problem[] */ {

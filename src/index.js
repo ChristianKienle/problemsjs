@@ -1,31 +1,30 @@
 // @flow
 'use strict';
-/*:: import type { MatcherRegistry } from './api/matchers'; */
 
 const CLI = require('./cli');
 
-const { defaultMatcherRegistry } = require('./api/matchers');
+const { Matchers, Emitter, DefaultEmitterDelegate, Watcher, Config } = require('./lib');
 const {
   defaultConfiguration,
   isValid: configurationIsValid,
-} = require('./api/config/');
-const App = require('./api/app');
-const Watcher = require('./api/watcher');
-const TaskExecutor = require('./api/task-executor');
+  resolved: resolvedConfiguration,
+} = Config;
 
-class Problems {
+const { defaultMatchers } = Matchers;
+
+class App {
   /*::
-  delegate: ?ProblemsDelegate
-  +_registry: MatcherRegistry;
+  delegate: EmitterDelegate
+  +_registry: typeof defaultMatchers;
   +_config: UnresolvedConfig;
-  _app: ?AppInterface;
+  _emitter: ?EmitterInterface;
   */
 
   constructor(config = defaultConfiguration()) {
-    this.delegate = undefined;
+    this.delegate = new DefaultEmitterDelegate();
     this._config = config;
-    this._registry = defaultMatcherRegistry;
-    this._app = undefined;
+    this._registry = defaultMatchers;
+    this._emitter = undefined;
   }
 
   useMatcher(name /*: string */, matcher /*: Matcher */) {
@@ -34,9 +33,9 @@ class Problems {
 
   get config() { return this._config; }
 
-  start(cb /*: (results: MatcherResult[]) => void */) /*: Promise<void> */ {
+  start() {
     const config = this.config;
-    const resolved = config.resolved();
+    const resolved = resolvedConfiguration(config);
     const registry = this._registry;
 
     // Validate config
@@ -44,18 +43,16 @@ class Problems {
       throw Error('Cannot start because config is invalid.');
     }
 
-    const executor = new TaskExecutor();
     const watcher = new Watcher(resolved.watcherOptions);
-    this._app = new App({
-      executor,
+    this._emitter = new Emitter({
       watcher,
       matcherRegistry: registry,
       tasks: resolved.tasks,
       workspaceFolder: resolved.workspaceFolder,
     });
-    this._app.delegate = this.delegate;
-    return this._app.resume(cb);
+    this._emitter.delegate = this.delegate;
+    this._emitter.resume();
   }
 }
 
-module.exports = { CLI, App: Problems };
+module.exports = { CLI, App };
