@@ -48,6 +48,7 @@ test('simple valid output', () => {
   expect(summaryRenderer).toBeUndefined();
   const problem = problems[0];
   expect(problem.message).toEqual('Missing semicolon');
-  expect(problem.location.line).toEqual(1);
-  expect(problem.location.source).toEqual('myFile.ts');
+  const { location = {} } = problem;
+  expect(location.line).toEqual(1);
+  expect(location.source).toEqual('myFile.ts');
 });

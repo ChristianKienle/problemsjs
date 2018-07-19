@@ -21,15 +21,30 @@ class OutlineModelEntry {
 }
 
 class OutlineModel {
+  /*::
+  +entries: OutlineModelEntry[];
+  +generalProblems: OutlineModelEntry[]; // general problems without a location
+  */
+  constructor(entries /*: OutlineModelEntry[] */) {
+    this.entries = entries;
+    this.generalProblems = [];
+  }
+
   static fromRun({problems, workspaceFolder} /*: RunInterface */) {
     const entries /*: OutlineModelEntry[] */ = [];
     const problemsByFile = new Map/*::<string, Problem[]>*/();
+    const generalProblems /*: Problem[] */ = [];
     problems.forEach(problem => {
-      const file = problem.location.source;
-      const problemsForFile = problemsByFile.get(file) || [];
-      problemsForFile.push(problem);
-      problemsByFile.set(file, problemsForFile);
+      const { source } = problem.location || {};
+      if(source != null && source !== undefined) {
+        const problemsForFile = problemsByFile.get(source) || [];
+        problemsForFile.push(problem);
+        problemsByFile.set(source, problemsForFile);
+      } else {
+        generalProblems.push(problem);
+      }
     });
+
     problemsByFile.forEach((problemsForFile, absolutePath) => {
       const relativePath = Path.relative(workspaceFolder, absolutePath);
       const entry = new OutlineModelEntry({ absolutePath, relativePath, problems: problemsForFile });
@@ -38,10 +53,7 @@ class OutlineModel {
     return new OutlineModel(entries);
   }
 
-  /*:: entries: OutlineModelEntry[]; */
-  constructor(entries /*: OutlineModelEntry[] */) {
-    this.entries = entries;
-  }
+
 
   get _problems() /*: Problem[] */ {
     const nestedProblems = this.entries.map(entry => entry.problems);

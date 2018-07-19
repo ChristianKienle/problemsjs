@@ -1,12 +1,6 @@
 // @flow
 'use strict';
 
-// const Path = require("path");
-// const Fs = require("fs");
-
-// const SCHEMA_FILE_NAME = "config.schema.json";
-// const SCHEMA_PATH = Path.join(__dirname, SCHEMA_FILE_NAME);
-
 const schema = {
   type: 'object',
   required: [],
@@ -24,6 +18,7 @@ const schema = {
       },
       properties: {
         includes: { items: [{ type: 'string' }] },
+        ignores: { items: [{ type: 'string' }] },
         watchedFolder: { type: 'string' },
       },
     },

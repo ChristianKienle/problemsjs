@@ -7,12 +7,14 @@ class Watcher {
   /*::
   watchedFolder: string;
   includes: string[]; // globs
+  ignores: string[]; // globs
   watcher: any;
   */
   constructor({ watchedFolder, includes } /*: WatcherOptions */) {
     this.watchedFolder = watchedFolder;
     this.includes = includes || ['**/*.js'];
-  }//
+    this.ignores = [];
+  }
 
   resume(cb /*: () => void */) {
     this.watcher = chokidar.watch(this.includes, { cwd: this.watchedFolder, ignoreInitial: true });
