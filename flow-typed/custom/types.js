@@ -73,7 +73,7 @@ declare type LocationType = {
 
 declare type Problem = {
   category: string;
-  location: LocationType;
+  location?: LocationType;
   message: string;
 };
 

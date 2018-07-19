@@ -37,6 +37,7 @@ test('simple valid output', () => {
   expect(summaryRenderer).toBeUndefined();
   const problem = problems[0];
   expect(problem.message).toEqual('hello');
-  expect(problem.location.line).toEqual(123);
-  expect(problem.location.source).toEqual('/Users/cmk/file.js');
+  const { location = {} } = problem;
+  expect(location.line).toEqual(123);
+  expect(location.source).toEqual('/Users/cmk/file.js');
 });

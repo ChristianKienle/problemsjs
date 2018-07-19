@@ -39,7 +39,14 @@ class CLI /*:: implements EmitterDelegate */ {
   }
 
   _didSelectProblem(problem /*: Problem */) /*: void */ {
-    const { source, line } = problem.location;
+    const { location } = problem;
+    if(location == null) {
+      return;
+    }
+    const { source, line } = location;
+    if(source == null || source === undefined) {
+      return;
+    }
     this._openFile(source, line);
   }
 
