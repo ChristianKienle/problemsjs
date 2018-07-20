@@ -1,7 +1,8 @@
 {
   "openInEditorCommand": "code --goto ${absolutePath}:${line}",
   "watcherOptions": {
-    "watchedFolder" : "${workspaceFolder}"
+    "watchedFolder" : "${workspaceFolder}",
+    "ignores": ["jest_code_coverage/**"]
   },
   "tasks": [
     {
@@ -10,13 +11,13 @@
       "program": "jest",
       "args": [
         "--rootDir",
-      "${workspaceFolder}",
-      "--config",
-      "${workspaceFolder}/jest.config.js",
-      "--json",
-      "--silent",
-      "--reporters",
-      "--all"
+        "${workspaceFolder}",
+        "--config",
+        "${workspaceFolder}/jest.config.js",
+        "--json",
+        "--silent",
+        "--reportrs",
+        "--all"
     ]},
     {
       "name": "lint",

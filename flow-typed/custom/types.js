@@ -100,6 +100,7 @@ declare interface TaskExecutor {
 declare type WatcherOptions = {
   watchedFolder: string;
   includes: string[]; // globs
+  ignores: string[]; // globs
 };
 
 // UI-Stuff

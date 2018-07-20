@@ -10,18 +10,23 @@ class Watcher {
   ignores: string[]; // globs
   watcher: any;
   */
-  constructor({ watchedFolder, includes } /*: WatcherOptions */) {
+  constructor({ watchedFolder, includes, ignores } /*: WatcherOptions */) {
     this.watchedFolder = watchedFolder;
     this.includes = includes || ['**/*.js'];
-    this.ignores = [];
+    this.ignores = ignores;
   }
 
   resume(cb /*: () => void */) {
-    this.watcher = chokidar.watch(this.includes, { cwd: this.watchedFolder, ignoreInitial: true });
+    const options = {
+      ignored: this.ignores,
+      cwd: this.watchedFolder,
+      ignoreInitial: true,
+    };
+    this.watcher = chokidar.watch(this.includes, options);
     this.watcher.on('all', () => {
       log.info('File Watcher detected changes');
       cb();
-    });//
+    });
   }
 }
 
