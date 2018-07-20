@@ -85,7 +85,6 @@ declare type SummaryRenderer = (term: TerminalUIInterface) => void;
 declare type MatcherResult = {
   errorMessage?: string;
   problems: Array<Problem>;
-  summary?: string | typeof undefined;
   summaryRenderer?: SummaryRenderer | typeof undefined;
 };
 

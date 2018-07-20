@@ -1,12 +1,13 @@
 {
   "name": "problemsjs",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "The hackable Problems Viewer.",
   "private": false,
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
-  "readme": "docs/README.md",
+  "readme": "README.md",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ChristianKienle/problemsjs.git"

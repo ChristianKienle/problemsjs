@@ -4,16 +4,14 @@
 const tslint = require('./../tslint');
 
 test('empty string', () => {
-  const { problems, summary, summaryRenderer } = tslint('');
+  const { problems, summaryRenderer } = tslint('');
   expect(problems).toBeArrayOfSize(0);
-  expect(summary).toBeUndefined();
   expect(summaryRenderer).toBeUndefined();
 });
 
 test('empty json array', () => {
-  const { problems, summary, summaryRenderer } = tslint('[]');
+  const { problems, summaryRenderer } = tslint('[]');
   expect(problems).toBeArrayOfSize(0);
-  expect(summary).toBeUndefined();
   expect(summaryRenderer).toBeUndefined();
 });
 
@@ -42,9 +40,8 @@ test('simple valid output', () => {
     }
 ]
 `;
-  const { problems, summary, summaryRenderer } = tslint(raw);
+  const { problems, summaryRenderer } = tslint(raw);
   expect(problems).toBeArrayOfSize(1);
-  expect(summary).toBeUndefined();
   expect(summaryRenderer).toBeUndefined();
   const problem = problems[0];
   expect(problem.message).toEqual('Missing semicolon');

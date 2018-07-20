@@ -1,0 +1,241 @@
+{
+  "numFailedTestSuites": 1,
+  "numFailedTests": 1,
+  "numPassedTestSuites": 6,
+  "numPassedTests": 21,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 0,
+  "numRuntimeErrorTestSuites": 0,
+  "numTotalTestSuites": 7,
+  "numTotalTests": 22,
+  "openHandles": [],
+  "snapshot": {
+    "added": 0,
+    "didUpdate": false,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0
+  },
+  "startTime": 1532104187382,
+  "success": false,
+  "testResults": [{
+    "assertionResults": [{
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "empty input",
+      "location": null,
+      "status": "passed",
+      "title": "empty input"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": ["Error: expect(received).toEqual(expected)\n\nExpected value to equal:\n  true\nReceived:\n  false\n    at Object.<anonymous>.test (/Users/cmk/problemsjs/src/lib/matchers/jest/jest.test.js:14:17)\n    at Object.asyncFn (/Users/cmk/problemsjs/node_modules/jest-jasmine2/build/jasmine_async.js:108:37)\n    at resolve (/Users/cmk/problemsjs/node_modules/jest-jasmine2/build/queue_runner.js:56:12)\n    at new Promise (<anonymous>)\n    at mapper (/Users/cmk/problemsjs/node_modules/jest-jasmine2/build/queue_runner.js:43:19)\n    at promise.then (/Users/cmk/problemsjs/node_modules/jest-jasmine2/build/queue_runner.js:87:41)\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:118:7)"],
+      "fullName": "fail please",
+      "location": null,
+      "status": "failed",
+      "title": "fail please"
+    }],
+    "endTime": 1532104189604,
+    "message": "  ● fail please\n\n    expect(received).toEqual(expected)\n\n    Expected value to equal:\n      true\n    Received:\n      false\n\n      12 | \n      13 | test('fail please', () => {\n    > 14 |   expect(false).toEqual(true);\n         |                 ^\n      15 | });\n\n      at Object.<anonymous>.test (src/lib/matchers/jest/jest.test.js:14:17)\n",
+    "name": "/Users/cmk/problemsjs/src/lib/matchers/jest/jest.test.js",
+    "startTime": 1532104188217,
+    "status": "failed",
+    "summary": ""
+  }, {
+    "assertionResults": [{
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "empty input",
+      "location": null,
+      "status": "passed",
+      "title": "empty input"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "single problem",
+      "location": null,
+      "status": "passed",
+      "title": "single problem"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "invalid json",
+      "location": null,
+      "status": "passed",
+      "title": "invalid json"
+    }],
+    "endTime": 1532104189921,
+    "message": "",
+    "name": "/Users/cmk/problemsjs/src/lib/matchers/eslint/eslint.test.js",
+    "startTime": 1532104188210,
+    "status": "passed",
+    "summary": ""
+  }, {
+    "assertionResults": [{
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "empty string",
+      "location": null,
+      "status": "passed",
+      "title": "empty string"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "empty json array",
+      "location": null,
+      "status": "passed",
+      "title": "empty json array"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "simple valid output",
+      "location": null,
+      "status": "passed",
+      "title": "simple valid output"
+    }],
+    "endTime": 1532104189912,
+    "message": "",
+    "name": "/Users/cmk/problemsjs/src/lib/matchers/__tests__/tslint.test.js",
+    "startTime": 1532104189653,
+    "status": "passed",
+    "summary": ""
+  }, {
+    "assertionResults": [{
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "empty string throws",
+      "location": null,
+      "status": "passed",
+      "title": "empty string throws"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "empty object is valid config",
+      "location": null,
+      "status": "passed",
+      "title": "empty object is valid config"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "empty array throws",
+      "location": null,
+      "status": "passed",
+      "title": "empty array throws"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "empty tasks but valid produces correct config",
+      "location": null,
+      "status": "passed",
+      "title": "empty tasks but valid produces correct config"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "defaults: watcher options & workspaceFolder",
+      "location": null,
+      "status": "passed",
+      "title": "defaults: watcher options & workspaceFolder"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "invalid task throws",
+      "location": null,
+      "status": "passed",
+      "title": "invalid task throws"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "simplest config with task",
+      "location": null,
+      "status": "passed",
+      "title": "simplest config with task"
+    }],
+    "endTime": 1532104190004,
+    "message": "",
+    "name": "/Users/cmk/problemsjs/src/lib/config/parser/__tests__/config.test.js",
+    "startTime": 1532104188252,
+    "status": "passed",
+    "summary": ""
+  }, {
+    "assertionResults": [{
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "empty string",
+      "location": null,
+      "status": "passed",
+      "title": "empty string"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "empty json object",
+      "location": null,
+      "status": "passed",
+      "title": "empty json object"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "simple valid output",
+      "location": null,
+      "status": "passed",
+      "title": "simple valid output"
+    }],
+    "endTime": 1532104190148,
+    "message": "",
+    "name": "/Users/cmk/problemsjs/src/lib/matchers/__tests__/flow.test.js",
+    "startTime": 1532104189978,
+    "status": "passed",
+    "summary": ""
+  }, {
+    "assertionResults": [{
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "empty input",
+      "location": null,
+      "status": "passed",
+      "title": "empty input"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "single line",
+      "location": null,
+      "status": "passed",
+      "title": "single line"
+    }, {
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "multiple lines",
+      "location": null,
+      "status": "passed",
+      "title": "multiple lines"
+    }],
+    "endTime": 1532104190155,
+    "message": "",
+    "name": "/Users/cmk/problemsjs/src/lib/matchers/__tests__/line.test.js",
+    "startTime": 1532104189975,
+    "status": "passed",
+    "summary": ""
+  }, {
+    "assertionResults": [{
+      "ancestorTitles": [],
+      "failureMessages": [],
+      "fullName": "open command",
+      "location": null,
+      "status": "passed",
+      "title": "open command"
+    }],
+    "endTime": 1532104190195,
+    "message": "",
+    "name": "/Users/cmk/problemsjs/src/cli/editor/__tests__/open-command.test.js",
+    "startTime": 1532104190056,
+    "status": "passed",
+    "summary": ""
+  }],
+  "wasInterrupted": false
+}
