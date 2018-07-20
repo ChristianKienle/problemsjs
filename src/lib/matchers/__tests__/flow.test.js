@@ -4,16 +4,14 @@
 const flow = require('./../flow');
 
 test('empty string', () => {
-  const { problems, summary, summaryRenderer } = flow('');
+  const { problems, summaryRenderer } = flow('');
   expect(problems).toBeArrayOfSize(0);
-  expect(summary).toBeUndefined();
   expect(summaryRenderer).toBeUndefined();
 });
 
 test('empty json object', () => {
-  const { problems, summary, summaryRenderer } = flow('{}');
+  const { problems, summaryRenderer } = flow('{}');
   expect(problems).toBeArrayOfSize(0);
-  expect(summary).toBeUndefined();
   expect(summaryRenderer).toBeUndefined();
 });
 
@@ -31,9 +29,8 @@ test('simple valid output', () => {
   }]
 }
 `;
-  const { problems, summary, summaryRenderer } = flow(raw);
+  const { problems, summaryRenderer } = flow(raw);
   expect(problems).toBeArrayOfSize(1);
-  expect(summary).toBeUndefined();
   expect(summaryRenderer).toBeUndefined();
   const problem = problems[0];
   expect(problem.message).toEqual('hello');

@@ -16,7 +16,7 @@
         "${workspaceFolder}/jest.config.js",
         "--json",
         "--silent",
-        "--reportrs",
+        "--reporters",
         "--all"
     ]},
     {

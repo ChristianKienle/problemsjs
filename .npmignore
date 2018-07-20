@@ -1,2 +1,7 @@
 docs/demo.gif
 problemsjs-*.tgz
+jest_code_coverage/
+node_modules/
+.DS_Store
+.tests.log
+sample-projects/

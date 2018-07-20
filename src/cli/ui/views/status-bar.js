@@ -129,11 +129,6 @@ class StatusBar /*:: implements EmitterDelegate */ {
       t.text(' ');
       return;
     }
-    const { summary } = result;
-    if(summary != null) {
-      t.text(summary);
-      t.text(' ');
-    }
   }
 
   render() {

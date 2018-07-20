@@ -2,7 +2,7 @@
 # Problems.js
 **The hackable problems viewer**
 
-![Problems.js Demo](./demo.gif)
+![Problems.js Demo](./docs/demo.gif)
 
 *Problems.js* automatically executes development related tasks and displays resulting problems in a nice CLI.
 
@@ -18,7 +18,7 @@
 Via npm:
 
 ```
-$ npm install --global problemsjs
+$ npm install problemsjs --global
 ```
 
 ## Using *Problems.js*
@@ -156,6 +156,7 @@ At the moment there is only a single property that can be specified by `watcherO
 |:--|:--|:--|:--|
 | `watchedFolder` | `string` | Absolute path to the root folder whose files should be watched for changes. | `/Users/chris/test/` |
 | `includes` | `Array of strings`; optional | Specifies which files should be watched. An array of globs. By default all JavaScript files are watched. | `['**/*.css', '**/*.html']` |
+| `ignores` | `Array of strings`; optional | Specifies which files should be ignored. An array of globs. By default nothing is ignored. | `['**/node_modules', '**/*.cpp']` |
 
 **Implementation Detail**
 

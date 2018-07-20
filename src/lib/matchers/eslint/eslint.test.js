@@ -6,7 +6,6 @@ const matcher = require('./eslint');
 test('empty input', () => {
   const res = matcher('');
   expect(res.problems).toBeArrayOfSize(0);
-  expect(res.summary).toBeUndefined();
   expect(res.summaryRenderer).toBeUndefined();
 });
 
@@ -31,7 +30,6 @@ test('single problem', () => {
   expect(problem.message).toEqual('hello world');
   expect(problem.location).toBeObject();
   expect(problem.location).toEqual({ line: 123, source: '/users/cmk/file.js' });
-  expect(res.summary).toBeUndefined();
   expect(res.summaryRenderer).toBeUndefined();
 });
 
@@ -45,6 +43,5 @@ test('invalid json', () => {
   `);
   const { problems } = res;
   expect(problems).toBeArrayOfSize(0);
-  expect(res.summary).toBeUndefined();
   expect(res.summaryRenderer).toBeUndefined();
 });
