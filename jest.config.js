@@ -30,6 +30,7 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '/flow-typed/',
+    '/jest_code_coverage/',
   ],
 
   // A list of reporter names that Jest uses when writing coverage reports
